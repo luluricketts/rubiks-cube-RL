@@ -47,7 +47,7 @@ class Cube:
                 
         return str_list
 
-    def step(self, state, action):
+    def step(self, action):
         """
         Given a state and action, executes that action and returns the new state and reward
         
@@ -55,7 +55,7 @@ class Cube:
         -----------
         state: integer representation of current state (index of string representation in valid_states)
         action: integer representation of action to take
-            action indeces: [0/F, 1/F', 2/U, 3/U', 4/R, 5/R', 6/B, 7/B', 8/D, 9/D', 10/L, 11/L']
+            action indeces: [0/F, 1/F', 2/U, 3/U', 4/R, 5/R']
             
         returns
         -------
@@ -63,19 +63,19 @@ class Cube:
         reward
         """
         
-        state_str = self.valid_states[state]
+        state_str = self.valid_states[self.current_s]
         
-        if action in [0,1,6,7]:
+        if action in [0,1]:
             inds = [[5,3,16,20],[13,2,8,21],[6,7,15,14]]
-            clockwise = True if action in [0,7] else False
-        elif action in [2,3,8,9]:
+            clockwise = True if action == 0 else False
+        elif action in [2,3]:
             inds = [[0,1,3,2],[6,4,10,8],[7,5,11,9]]
-            clockwise = True if action in [2,9] else False
-        elif action in [4,5,10,11]:
+            clockwise = True if action == 2 else False
+        elif action in [4,5]:
             inds = [[8,9,17,16],[7,1,18,21],[15,3,10,23]]
-            clockwise = True if action in [4,10] else False
+            clockwise = True if action == 4 else False
         
-        str_list = rotate(list(state_str), inds, clockwise=clockwise)
+        str_list = self.rotate(list(state_str), inds, clockwise=clockwise)
         new_str = ''.join([i for i in str_list])
         state_new = np.where(self.valid_states == new_str)[0][0]
         
