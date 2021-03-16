@@ -12,3 +12,5 @@ states file taken from: https://tim.id.au/limejuice/generating-the-full-list-of-
 All Sarsa(0) and n-step Sarsa code is contained in Jupyter notebooks and can be run there, parameters such as number of episodes, alpha, epsilon, gamma can all be tweaked.
 
 Initializing Q values is in the Q_init notebook, which updates Q values by following paths startin from the goal state.
+
+**all Q values are in Q.zip file** This is because the raw files were too large to upload to github
